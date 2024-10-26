@@ -28,4 +28,5 @@
     <script src="{{ asset('node_modules/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
     @stack('js')
+    <x-notifs.notif />
 </html>

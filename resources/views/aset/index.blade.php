@@ -18,16 +18,40 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>No. Hp</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Status</th>
+                                <th>Kode</th>
+                                <th>Nama Barang</th>
+                                <th>Satuan</th>
+                                <th>Harga</th>
+                                <th>Merk</th>
+                                <th>Diperoleh Tanggal</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bodyTable">
-
+                        <tbody>
+                            @foreach($list as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->kode_aset }}</td>
+                                    <td>{{ $item->nama_aset }}</td>
+                                    <td>{{ $item->satuan }}</td>
+                                    <td>@formatRupiah($item->harga)</td>
+                                    <td>{{ $item->merk }}</td>
+                                    <td>@tglLengkap($item->tgl_peroleh)</td>
+                                    <td>
+                                        <div class="btn-group btn-sm">
+                                            <a href="{{ url('aset/edit',$item->id) }}" class="btn btn-sm btn-outline-warning">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="{{ url('aset/edit',$item->id) }}" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

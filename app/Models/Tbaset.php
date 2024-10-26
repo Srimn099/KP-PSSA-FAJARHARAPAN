@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Tbaset extends Model
 {
@@ -48,4 +49,16 @@ class Tbaset extends Model
         'created_at',
         'updated_at'
     ];
+
+    public static function kodeAset(){
+        $latestEntry = self::latest()->first();
+        $latestId = $latestEntry ? (int) Str::after($latestEntry->kode_aset, 'AST.') : 0;
+        $nextId = str_pad($latestId + 1, 3, '0', STR_PAD_LEFT);
+        $tanggalSekarang = date('Ymd');
+        $kode = "AST.{$nextId}.{$tanggalSekarang}";
+        return $kode;
+    }
+
+
+
 }

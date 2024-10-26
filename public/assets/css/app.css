@@ -291,6 +291,8 @@ textarea,
     bg-white
     outline-none
     shadow-none
+    focus:shadow-none
+    focus:outline-none
     rounded-md
     border-[1.5px]
     border-slate-300
@@ -299,4 +301,22 @@ textarea,
     transition-all
     duration-300
     ease-in-out
+    read-only:bg-slate-100
+    read-only:text-slate-400
+    read-only:border-slate-200
+    read-only:cursor-not-allowed
+}
+.form-group label{
+    @apply
+    text-xs
+    text-slate-600
+    font-medium
+}
+
+/* form-post-data */
+.form-post-data{
+    @apply
+    grid
+    grid-cols-12
+    gap-4
 }
