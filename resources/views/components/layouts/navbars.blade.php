@@ -18,33 +18,21 @@
     <div class="nabars-bottom-menu">
         <ul class="menu">
             <li>
-                <a href="#">
+                <a href="{{ url('/dashboard') }}">
                     <i class="bi bi-house"></i>
-                    <span>Home</span>
+                    <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ url('/aset') }}">
                     <i class="bi bi-file-earmark-text"></i>
-                    <span>Akun</span>
+                    <span>Aset</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class="bi bi-journal-text"></i>
-                    <span>Journal</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="bi bi-bell"></i>
-                    <span>Notifications</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="{{ url('/akun') }}">
                     <i class="bi bi-person-circle"></i>
-                    <span>Profile</span>
+                    <span>Akun</span>
                 </a>
             </li>
         </ul>

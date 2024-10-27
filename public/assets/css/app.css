@@ -320,3 +320,79 @@ textarea,
     grid-cols-12
     gap-4
 }
+
+/* modal-confirm */
+.modal-confirm,
+.modal-notif{
+    @apply
+    flex
+    items-center
+    justify-center
+}
+.modal-confirm .modal-content,
+.modal-notif .modal-content{
+    @apply
+    w-full
+    md:max-w-[350px]
+    flex
+    flex-col
+    items-center
+    justify-center
+    space-y-3
+    p-4
+    relative
+}
+.modal-confirm .modal-content .modal-icons{
+    @apply
+    absolute
+    -top-[25%]
+    left-[40%]
+    w-[80px]
+    h-[80px]
+    bg-white
+    rounded-full
+    flex
+    items-center
+    justify-center
+    text-5xl
+    text-yellow-500
+}
+.modal-confirm .modal-content .container-modal {
+    @apply
+    relative
+    py-[1rem]
+    text-center
+   border-b-[1px]
+   border-b-slate-300
+}
+.modal-confirm .modal-content .container-modal h2{
+    @apply
+    text-base
+    font-medium
+    mb-[2px]
+}
+.modal-confirm .modal-content .container-modal p{
+    @apply
+    text-sm
+    font-normal
+    text-slate-500
+}
+.modal-confirm .modal-content .modal-actions {
+    @apply
+    pt-4
+    flex
+    items-center
+    justify-center
+    gap-x-1
+}
+
+.modal-notif .modal-content .modal-icons{
+    @apply
+    w-20
+    h-20
+    rounded-full
+    flex
+    items-center
+    justify-center
+    text-xl
+}

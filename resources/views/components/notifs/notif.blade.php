@@ -1,8 +1,6 @@
-@push('css')
-    <link rel="stylesheet" href="{{ asset('node_modules/sweetalert2/dist/sweetalert2.min.css') }}">
-@endpush
+
 @push('js')
-    <script src="{{ asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+
     @if (session('success'))
         <script>
             swal.fire({

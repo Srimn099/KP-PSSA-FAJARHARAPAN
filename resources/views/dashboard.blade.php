@@ -8,6 +8,9 @@
         <div class="box">
             <div class="header">
                 <h2 class="title">DATA TABLE</h2>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                  </button>
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -31,4 +34,6 @@
             </div>
         </div>
     </div>
+    {{-- <x-modals.modalconfirm id="exampleModal" action=""/> --}}
+    <x-modals.modalnotif id="exampleModal" icon="check-circle" title="SUCCESS" message="Data berhasil dihapus"/>
 </x-layouts.apps>
