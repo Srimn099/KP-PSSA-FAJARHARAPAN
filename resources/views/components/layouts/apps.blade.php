@@ -22,6 +22,7 @@
         <section class="section-contents">
             {{ $slot }}
         </section>
+        <x-notifs.notif />
     </body>
 
     <script src="{{ asset('assets/js/jquery-3.7.1.js') }}"></script>
@@ -31,5 +32,5 @@
     <script src="{{ asset('node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
     @stack('js')
-    <x-notifs.notif />
+
 </html>

@@ -396,3 +396,59 @@ textarea,
     justify-center
     text-xl
 }
+.modal-notif .modal-content .modal-icons {
+    @apply
+    absolute
+    flex
+    items-center
+    justify-center
+    bg-white
+    -top-10
+    text-5xl
+}
+.modal-notif .modal-content .container-modal{
+    @apply
+    pt-[1.8rem]
+    text-center
+}
+.modal-notif .modal-content .container-modal h2{
+    @apply
+    text-xl
+    font-semibold
+}
+.modal-notif .modal-content .container-modal p{
+    @apply
+    text-base
+    font-normal
+    text-slate-500
+}
+.list-vertical {
+    @apply
+    flex
+    flex-col
+    items-start
+    py-2
+}
+.list-vertical .list-vertical-item {
+    @apply
+    w-full
+    flex
+    flex-col
+    items-start
+    mb-2
+    pb-2
+    border-b-[1.2px]
+    border-b-slate-300
+}
+.list-vertical .list-vertical-item .li-top {
+    @apply
+    text-sm
+    font-medium
+    text-slate-600
+    mb-[2px]
+}
+.list-vertical .list-vertical-item .li-bottom {
+    @apply
+    text-sm
+    text-slate-500
+}

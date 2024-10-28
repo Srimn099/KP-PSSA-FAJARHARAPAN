@@ -64,10 +64,13 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo ''; ?>";
         });
 
-        Blade::directive('formatRupiah', function ($nilai) {
-            // Pastikan nilai adalah angka
-            $harga = number_format((float)$nilai, 2, ',', '.');
-            return "<?php echo 'Rp. ' . '$harga'; ?>";
+        Blade::directive('formatRupiah', function ( $expression ) {
+            if (!empty($expression)) {
+
+                return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
+            }else{
+                return "";
+            }
         });
     }
 }

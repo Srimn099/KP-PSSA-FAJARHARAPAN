@@ -39,18 +39,35 @@
                                     <td>@tglLengkap($item->tgl_peroleh)</td>
                                     <td>
                                         <div class="btn-group btn-sm">
-                                            <a href="{{ url('aset/edit',$item->id) }}" class="btn btn-sm btn-outline-warning">
+                                            <a href="#detail{{ $item->id }}" data-bs-toggle="modal" class="btn btn-sm btn-outline-warning">
                                                 <i class="bi bi-eye"></i>
                                             </a>
                                             <a href="{{ url('aset/edit',$item->id) }}" class="btn btn-sm btn-outline-primary">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger">
+                                            <a href="#hapus{{ $item->id }}" data-bs-toggle="modal" class="btn btn-sm btn-outline-danger">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
                                     </td>
                                 </tr>
+                                <!-- Modal hapus -->
+                                <x-modals.modalconfirm id="hapus{{ $item->id }}" action="{{ url('aset/delete/'.$item->id) }}"/>
+                                <!-- Modal detail -->
+                                <x-modals.modaldetail id="detail{{ $item->id }}" title="Detail Aset">
+                                    <ul class="list-vertical">
+                                        <x-lists.listvertical title="Kode" subtitle="{{ $item->kode_aset }}" />
+                                        <x-lists.listvertical title="Nama Barang" subtitle="{{ $item->nama_aset }}" />
+                                        <x-lists.listvertical title="Satuan" subtitle="{{ $item->satuan }}" />
+                                        <x-lists.listvertical title="Harga" subtitle="<?php echo number_format($item->harga,0,',','.'); ?>" />
+                                        <x-lists.listvertical title="Merk" subtitle="{{ $item->merk }}" />
+                                        <x-lists.listvertical title="Bahan" subtitle="{{ $item->bahan }}" />
+                                        <x-lists.listvertical title="Kondisi" subtitle="{{ $item->kondisi }}" />
+                                        <x-lists.listvertical title="Diperoleh Tanggal" subtitle="{{ $item->tgl_peroleh }}" />
+                                        <x-lists.listvertical title="Lokasi Simpan" subtitle="{{ $item->lokasi_simpan }}" />
+                                        <x-lists.listvertical title="Keterangan" subtitle="{{ $item->keterangan }}" />
+                                    </ul>
+                                </x-modals.modaldetail>
                             @endforeach
                         </tbody>
                     </table>
