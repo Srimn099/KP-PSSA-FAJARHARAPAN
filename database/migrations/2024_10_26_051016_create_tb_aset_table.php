@@ -21,9 +21,12 @@ class CreateTbAsetTable extends Migration
             $table->string('merk');
             $table->string('satuan');
             $table->double('harga');
+            $table->double('qty');
+            $table->double('total');
             $table->string('kondisi');
             $table->string('lokasi_simpan');
             $table->date('tgl_peroleh');
+            $table->enum('jenis_aset',['TETAP','TIDAK TETAP']);
             $table->longText('keterangan');
             $table->timestamps();
         });

@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\PostkeuanganController;
+use App\Http\Controllers\TransaksiController;
 
 // Authentication routes
 
@@ -28,5 +29,23 @@ Route::prefix('/aset')->group(function () {
         Route::get('/edit/{aset}', 'edit');
         Route::post('/update/{aset}', 'update');
         Route::post('/delete/{aset}', 'delete');
+    });
+});
+// Poestkeuangan controller
+Route::prefix('/keuangan')->group(function () {
+    Route::controller(PostkeuanganController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::post('/update/{poskeuangan}', 'update');
+        Route::post('/delete/{poskeuangan}', 'delete');
+    });
+});
+// Transaksi controller
+Route::prefix('/transaksi')->group(function () {
+    Route::controller(TransaksiController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/store', 'store');
+        Route::post('/update/{poskeuangan}', 'update');
+        Route::post('/delete/{poskeuangan}', 'delete');
     });
 });

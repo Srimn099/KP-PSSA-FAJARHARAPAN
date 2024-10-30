@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_akun', function (Blueprint $table) {
+        Schema::create('tb_transaksi', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_trx');
+            $table->enum('jenis_trx',['DEBET','KREDIT']);
+            $table->double('nominal_trx');
+            $table->double('saldo_trx');
+            $table->date('tgl_trx');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_akun');
+        Schema::dropIfExists('tb_transaksi');
     }
 };

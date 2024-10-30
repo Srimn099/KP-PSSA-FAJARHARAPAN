@@ -306,6 +306,10 @@ textarea,
     read-only:border-slate-200
     read-only:cursor-not-allowed
 }
+.form-group{
+    @apply
+    mb-3
+}
 .form-group label{
     @apply
     text-xs
@@ -319,6 +323,45 @@ textarea,
     grid
     grid-cols-12
     gap-4
+}
+
+/* Button */
+.btn{
+    @apply
+    text-sm
+    rounded-sm
+    hover:shadow-lg
+    focus:shadow-lg
+}
+.btn-secondary{
+    @apply
+    border-[1px]
+    border-slate-500
+    bg-slate-500
+    focus:border-slate-600
+    focus:bg-slate-600
+    hover:border-slate-600
+    hover:bg-slate-600
+}
+.btn-primary{
+    @apply
+    border-[1px]
+    border-blue-500
+    bg-blue-500
+    focus:border-blue-600
+    focus:bg-blue-600
+    hover:border-blue-600
+    hover:bg-blue-600
+}
+.btn-success{
+    @apply
+    border-[1px]
+    border-emerald-500
+    bg-emerald-500
+    focus:border-emerald-600
+    focus:bg-emerald-600
+    hover:border-emerald-600
+    hover:bg-emerald-600
 }
 
 /* modal-confirm */
@@ -451,4 +494,25 @@ textarea,
     @apply
     text-sm
     text-slate-500
+}
+
+
+/* modal-post-data */
+.modal-post-data .modal-content form{
+    @apply
+    flex
+    flex-col
+}
+.modal-post-data .modal-content .modal-header .modal-title{
+    @apply
+    text-base
+    font-medium
+    text-slate-500
+}
+.modal-post-data .modal-content .modal-footer{
+    @apply
+    flex
+    items-center
+    justify-center
+    space-x-1
 }

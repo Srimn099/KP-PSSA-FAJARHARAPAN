@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\CodeHelper;
+
 use Illuminate\Http\Request;
 
 use App\Models\Tbaset;
@@ -19,7 +19,11 @@ class AsetController extends Controller
         return view('aset.create', $data);
     }
     function store(Request $request){
+
+
         $request->validate(Tbaset::$rules,Tbaset::$messages);
+        $total = Tbaset::totalNoSatuan($request->total);
+        // Log::info($total);
         $simpan = Tbaset::create([
             'kode_aset' => $request->kode_aset,
             'nama_aset' => $request->nama_aset,
@@ -27,10 +31,13 @@ class AsetController extends Controller
             'merk' => $request->merk,
             'satuan' => $request->satuan,
             'harga' => $request->harga,
+            'qty' => $request->qty,
+            'total' =>  $total,
             'kondisi' => $request->kondisi,
             'lokasi_simpan' => $request->lokasi_simpan,
             'tgl_peroleh' => $request->tgl_peroleh,
-            'keterangan' => $request->keterangan,
+            'jenis_aset' => $request->jenis_aset,
+            'keterangan' => $request->keterangan
         ]);
 
        if( $simpan){
@@ -45,6 +52,7 @@ class AsetController extends Controller
     }
     function update(Request $request, Tbaset $aset){
         $request->validate(Tbaset::$rules,Tbaset::$messages);
+        $total = Tbaset::totalNoSatuan($request->total);
         $simpan = $aset->update([
             'kode_aset' => $request->kode_aset,
             'nama_aset' => $request->nama_aset,
@@ -52,10 +60,13 @@ class AsetController extends Controller
             'merk' => $request->merk,
             'satuan' => $request->satuan,
             'harga' => $request->harga,
+            'qty' => $request->qty,
+            'total' =>  $total,
             'kondisi' => $request->kondisi,
             'lokasi_simpan' => $request->lokasi_simpan,
             'tgl_peroleh' => $request->tgl_peroleh,
-            'keterangan' => $request->keterangan,
+            'jenis_aset' => $request->jenis_aset,
+            'keterangan' => $request->keterangan
         ]);
 
         if( $simpan){

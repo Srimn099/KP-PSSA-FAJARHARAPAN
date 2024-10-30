@@ -18,12 +18,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode</th>
-                                <th>Nama Barang</th>
+                                <th>Barang</th>
                                 <th>Satuan</th>
                                 <th>Harga</th>
-                                <th>Merk</th>
-                                <th>Diperoleh Tanggal</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Tgl Peroleh</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -31,11 +31,11 @@
                             @foreach($list as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kode_aset }}</td>
                                     <td>{{ $item->nama_aset }}</td>
                                     <td>{{ $item->satuan }}</td>
                                     <td>@formatRupiah($item->harga)</td>
-                                    <td>{{ $item->merk }}</td>
+                                    <td>{{ $item->qty }}</td>
+                                    <td>@formatRupiah($item->total)</td>
                                     <td>@tglLengkap($item->tgl_peroleh)</td>
                                     <td>
                                         <div class="btn-group btn-sm">
@@ -61,6 +61,8 @@
                                         <x-lists.listvertical title="Satuan" subtitle="{{ $item->satuan }}" />
                                         <x-lists.listvertical title="Harga" subtitle="<?php echo number_format($item->harga,0,',','.'); ?>" />
                                         <x-lists.listvertical title="Merk" subtitle="{{ $item->merk }}" />
+                                        <x-lists.listvertical title="Satuan" subtitle="{{ $item->satuan }}" />
+                                        <x-lists.listvertical title="Total" subtitle="<?php echo number_format($item->total,0,',','.'); ?>" />
                                         <x-lists.listvertical title="Bahan" subtitle="{{ $item->bahan }}" />
                                         <x-lists.listvertical title="Kondisi" subtitle="{{ $item->kondisi }}" />
                                         <x-lists.listvertical title="Diperoleh Tanggal" subtitle="{{ $item->tgl_peroleh }}" />

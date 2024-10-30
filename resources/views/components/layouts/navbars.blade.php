@@ -30,10 +30,38 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('/akun') }}">
-                    <i class="bi bi-person-circle"></i>
-                    <span>Akun</span>
+                <a href="{{ url('/keuangan') }}">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Keuangan</span>
                 </a>
+            </li>
+            <li>
+                <a href="{{ url('/transaksi') }}">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Transaksi</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/siswa') }}">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Siswa</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/pengelola') }}">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Pengelola</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-bs-toggle="dropdown">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Laporan</span>
+                </a>
+                <ul class="dropdown-menu md:dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Laporan Transaksi</a></li>
+                    <li><a class="dropdown-item" href="#">Laporan Keuangan</a></li>
+                </ul>
             </li>
         </ul>
     </div>

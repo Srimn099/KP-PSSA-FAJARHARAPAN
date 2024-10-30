@@ -1,0 +1,2 @@
+Membuat table
+-- php artisan make:migration create_tb_pos_keuangan_table
