@@ -26,7 +26,7 @@ class CreateTbSiswaTable extends Migration
             $table->string('pk_ortu');
             $table->text('alamat');
             $table->date('tgl_masuk');
-            $table->date('tgl_keluar')->nullable();
+            $table->string('tgl_keluar')->nullable();
             $table->string('status')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps(); // Ini akan membuat created_at dan updated_at

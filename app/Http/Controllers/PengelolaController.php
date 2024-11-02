@@ -3,48 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tbsiswa;
+use App\Models\Tbpengelola;
 
-class SiswaController extends Controller
+class PengelolaController extends Controller
 {
     function index(){
-        $data['list'] = Tbsiswa::orderBy('id', 'desc')->get();
-        return view('siswa.index', $data);
-    }
-    function create(){
-        return view('siswa.create');
+        $data['list'] = Tbpengelola::orderBy('id', 'desc')->get();
+        return view('pengelola.index', $data);
     }
     function store(Request $request){
-        $request->validate(Tbsiswa::$rules,Tbsiswa::$messages);
-        $simpan = Tbsiswa::create([
-            'foto' => Tbsiswa::handleUpload($request->foto),
+        $request->validate(Tbpengelola::$rules,Tbpengelola::$messages);
+        $simpan = Tbpengelola::create([
+            'foto' => Tbpengelola::handleUpload($request->foto),
+            'no_ktp' => $request->no_ktp,
             'nama' => $request->nama,
-            'tmp_lahir' => $request->tmp_lahir,
-            'tgl_lahir' => $request->tgl_lahir,
             'jk' => $request->jk,
-            'pendidikan_terakhir' => $request->pendidikan_terakhir,
-            'nama_ayah' => $request->nama_ayah,
-            'nama_ibu' => $request->nama_ibu,
-            'pk_ortu' => $request->pk_ortu,
+            'usia' => $request->usia,
             'alamat' => $request->alamat,
-            'tgl_masuk' => $request->tgl_masuk,
-            'tgl_keluar' => $request->tgl_keluar,
+            'jabatan' => $request->jabatan,
         ]);
 
         if($simpan){
-            return redirect('siswa')->with('success', 'Data berhasil disimpan');
+            return back()->with('success', 'Data berhasil disimpan');
         }else{
             return back()->with('error', 'Data gagal disimpan');
         }
     }
-    function edit(Tbsiswa $siswa){
+    function edit(Tbpengelola $siswa){
         $data['list'] = $siswa;
-        return view('siswa.edit', $data);
+        return view('pengelola.edit', $data);
     }
-    function update(Request $request, Tbsiswa $siswa){
+    function update(Request $request, Tbpengelola $siswa){
 
         if($request->foto != null){
-            $hapusFile = Tbsiswa::handleDelete($request->foto);
+            $hapusFile = Tbpengelola::handleDelete($request->foto);
             if($hapusFile){
                 $simpan = $siswa->update([
                     'foto' => $siswa->handleUpload($request->foto),
@@ -95,9 +87,9 @@ class SiswaController extends Controller
     }
 
     function delete($siswa){
-        $data = Tbsiswa::find($siswa);
+        $data = Tbpengelola::find($siswa);
 
-        $hapusFile = Tbsiswa::handleDelete($data->foto);
+        $hapusFile = Tbpengelola::handleDelete($data->foto);
         if($hapusFile){
             $hapus = $data->delete();
             if($hapus){

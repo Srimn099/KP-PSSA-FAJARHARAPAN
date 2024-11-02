@@ -20,8 +20,6 @@ class Tbsiswa extends Model
        'alamat',
        'tgl_masuk',
        'tgl_keluar',
-       'status',
-       'keterangan',
     ];
     static $rules = [
         'foto' => 'required',
@@ -36,8 +34,6 @@ class Tbsiswa extends Model
         'alamat' => 'required',
         'tgl_masuk' => 'required',
         'tgl_keluar' => 'required',
-        'status' => 'required',
-        'keterangan' => 'required',
     ];
     static $messages = [
        'foto.required' => 'Foto wajib diisi',
@@ -52,24 +48,29 @@ class Tbsiswa extends Model
         'alamat.required' => 'Alamat wajib diisi',
         'tgl_masuk.required' => 'Tanggal Masuk wajib diisi',
         'tgl_keluar.required' => 'Tanggal Keluar wajib diisi',
-        'status.required' => 'Status wajib diisi',
-        'keterangan.required' => 'Keterangan wajib diisi',
     ];
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    static function handleUploadFoto($file){
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('foto'), $fileName);
-        return $fileName;
+    function ttl(){
+        return $this->tmp_lahir.','.$this->tgl_lahir;
     }
 
-    static function handleDeleteFoto($fileName){
-        $filePath = public_path('foto/' . $fileName);
-        if(file_exists($filePath)){
-            unlink($filePath);
+    public static function handleUpload($file)
+    {
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $tmp = $file->move('assets/images/fotosiswa/', $fileName);
+        return $tmp;
+    }
+    public static function handleDelete($file)
+    {
+        if ($file) {
+            if (file_exists($file)) {
+                unlink($file);
+                return true;
+            }
         }
     }
 
