@@ -35,6 +35,10 @@
                                     <td>{{ $item->jabatan }}</td>
                                     <td>
                                         <div class="btn-group btn-sm">
+                                            <a href="#detail{{ $item->id }}" data-bs-toggle="modal"
+                                                class="btn btn-sm btn-outline-warning">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
                                             <a href="#edit{{ $item->id }}" data-bs-toggle="modal"
                                                 class="btn btn-sm btn-outline-primary">
                                                 <i class="bi bi-pencil-square"></i>
@@ -49,17 +53,37 @@
                                 <!-- Modal hapus -->
                                 <x-modals.modalconfirm id="hapus{{ $item->id }}" action="{{ url('keuangan/delete/' . $item->id) }}" />
 
-                                 <!-- Modal create -->
-                                <x-modals.modalpost id="edit{{ $item->id }}" title="Form Update Data Keuangan" action="{{ url('keuangan/update', $item->id) }}">
+                                 <!-- Modal detail -->
+                                 <x-modals.modaldetail id="detail{{ $item->id }}" title="Detail Siswa">
+                                    <ul class="list-vertical">
+                                        <img src="{{ $item->foto }}" alt="Foto" class="w-full h-auto rounded-lg">
+                                        <x-lists.listvertical title="Nama" subtitle="{{ $item->nama }}" />
+                                        <x-lists.listvertical title="Nomor KTP" subtitle="{{ $item->no_ktp }}" />
+                                        <x-lists.listvertical title="Jenis Kelamin" subtitle="{{ $item->jk }}" />
+                                        <x-lists.listvertical title="Jabatan" subtitle="{{ $item->jabatan }}" />
+                                        <x-lists.listvertical title="Usia" subtitle="{{ $item->usia }}" />
+                                        <x-lists.listvertical title="Alamat" subtitle="{{ $item->alamat }}" />
+                                    </ul>
+                                </x-modals.modaldetail>
+                                <!-- Modal Update -->
+                                <x-modals.modalpost id="edit{{ $item->id }}" title="Form Edit Data Pengelola" action="{{ url('pengelola/update', $item->id) }}">
 
-                                    <x-inputs.input label="Keterangan" name="keterangan_trx" value="{{ $item->keterangan_trx }}" placeholder="Keterangan Transaksi" />
-                                    <x-inputs.select label="Jenis Transaksi" name="jenis_trx">
+                                    <x-inputs.input type="file" label="Update Foto" name="foto" placeholder="Masukan foto baru ..." />
+                                    <x-inputs.input label="No KTP" name="no_ktp" value="{{ $item->no_ktp }}" placeholder="Masukan no ktp ..." />
+                                    <x-inputs.input label="Nama" name="nama" value="{{ $item->nama }}" placeholder="Masukan nama ..." />
+                                    <x-inputs.select label="Jenis Kelamin" name="jk">
                                         <option value="">--- Pilih ---</option>
-                                        <option value="DEBET" @if($item->jenis_pos == 'DEBET') selected @endif>DEBET</option>
-                                        <option value="KREDIT" @if($item->jenis_pos == 'KREDIT') selected @endif>KREDIT</option>
+                                        <option value="Laki-laki" @if ($item->jk == 'Laki-laki')
+                                            selected
+                                        @endif>Laki-laki</option>
+                                        <option value="Perempuan" @if ($item->jk == 'Perempuan')
+                                            selected
+
+                                        @endif>Perempuan</option>
                                     </x-inputs.select>
-                                    <x-inputs.input label="Nominal" name="nominal_trx" value="{{ $item->nominal_trx }}" placeholder="Nominal Transaksi" />
-                                    <x-inputs.input label="Saldo" name="saldo_trx" value="{{ $item->saldo_trx }}" placeholder="Saldo Transaksi" />
+                                    <x-inputs.input label="Usia" name="usia" value="{{ $item->usia }}" placeholder="Masukan usia ..." />
+                                    <x-inputs.input label="Jabatan" name="jabatan" value="{{ $item->jabatan }}" placeholder="Masukan jabatan ..." />
+                                    <x-inputs.input label="Alamat" name="alamat" value="{{ $item->alamat }}" placeholder="Masukan alamat" />
                                 </x-modals.modalpost>
                             @endforeach
                         </tbody>

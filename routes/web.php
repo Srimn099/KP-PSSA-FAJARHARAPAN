@@ -69,7 +69,7 @@ Route::prefix('/pengelola')->group(function () {
     Route::controller(PengelolaController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/store', 'store');
-        Route::post('/update/{poskeuangan}', 'update');
-        Route::post('/delete/{poskeuangan}', 'delete');
+        Route::post('/update/{pengelola}', 'update');
+        Route::post('/delete/{pengelola}', 'delete');
     });
 });

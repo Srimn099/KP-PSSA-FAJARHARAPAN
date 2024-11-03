@@ -29,31 +29,22 @@ class PengelolaController extends Controller
             return back()->with('error', 'Data gagal disimpan');
         }
     }
-    function edit(Tbpengelola $siswa){
-        $data['list'] = $siswa;
-        return view('pengelola.edit', $data);
-    }
-    function update(Request $request, Tbpengelola $siswa){
+    function update(Request $request, Tbpengelola $pengelola){
 
         if($request->foto != null){
-            $hapusFile = Tbpengelola::handleDelete($request->foto);
+            $hapusFile = Tbpengelola::handleDelete($pengelola->foto);
             if($hapusFile){
-                $simpan = $siswa->update([
-                    'foto' => $siswa->handleUpload($request->foto),
+                $simpan = $pengelola->update([
+                    'foto' => Tbpengelola::handleUpload($request->foto),
+                    'no_ktp' => $request->no_ktp,
                     'nama' => $request->nama,
-                    'tmp_lahir' => $request->tmp_lahir,
-                    'tgl_lahir' => $request->tgl_lahir,
                     'jk' => $request->jk,
-                    'pendidikan_terakhir' => $request->pendidikan_terakhir,
-                    'nama_ayah' => $request->nama_ayah,
-                    'nama_ibu' => $request->nama_ibu,
-                    'pk_ortu' => $request->pk_ortu,
+                    'usia' => $request->usia,
                     'alamat' => $request->alamat,
-                    'tgl_masuk' => $request->tgl_masuk,
-                    'tgl_keluar' => $request->tgl_keluar,
+                    'jabatan' => $request->jabatan,
                 ]);
                 if($simpan){
-                    return redirect('siswa')->with('success', 'Data berhasil diupdate');
+                    return back()->with('success', 'Data berhasil diupdate');
                 }else{
                     return back()->with('error', 'Data gagal diupdate');
                 }
@@ -62,36 +53,28 @@ class PengelolaController extends Controller
             }
 
         }else{
-            $simpan = $siswa->update([
+            $simpan = $pengelola->update([
+                'no_ktp' => $request->no_ktp,
                 'nama' => $request->nama,
-                'tmp_lahir' => $request->tmp_lahir,
-                'tgl_lahir' => $request->tgl_lahir,
                 'jk' => $request->jk,
-                'pendidikan_terakhir' => $request->pendidikan_terakhir,
-                'nama_ayah' => $request->nama_ayah,
-                'nama_ibu' => $request->nama_ibu,
-                'pk_ortu' => $request->pk_ortu,
+                'usia' => $request->usia,
                 'alamat' => $request->alamat,
-                'tgl_masuk' => $request->tgl_masuk,
-                'tgl_keluar' => $request->tgl_keluar,
+                'jabatan' => $request->jabatan,
             ]);
             if($simpan){
-                return redirect('siswa')->with('success', 'Data berhasil diupdate');
+                return back()->with('success', 'Data berhasil diupdate');
             }else{
                 return back()->with('error', 'Data gagal diupdate');
             }
         }
 
-
-
     }
 
-    function delete($siswa){
-        $data = Tbpengelola::find($siswa);
+    function delete(Tbpengelola $pengelola){
 
-        $hapusFile = Tbpengelola::handleDelete($data->foto);
+        $hapusFile = Tbpengelola::handleDelete($pengelola->foto);
         if($hapusFile){
-            $hapus = $data->delete();
+            $hapus =  $pengelola->delete();
             if($hapus){
                 return back()->with('success', 'Data berhasil dihapus');
             }else{
