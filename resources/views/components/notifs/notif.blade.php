@@ -8,7 +8,7 @@
                 title: 'Sukses',
                 text: "{{ session('success') }}",
                 showConfirmButton: false,
-                timer: 3500
+                timer: 1500
             });
 
         </script>
@@ -19,7 +19,7 @@
                 title: 'Error',
                 text: "{{ session('error') }}",
                 showConfirmButton: false,
-                timer: 3500
+                timer: 1500
             });
         </script>
     @endif

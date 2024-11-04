@@ -49,20 +49,21 @@
                                     </td>
                                 </tr>
                                 <!-- Modal hapus -->
-                                <x-modals.modalconfirm id="hapus{{ $item->id }}" action="{{ url('keuangan/delete/' . $item->id) }}" />
+                                <x-modals.modalconfirm id="hapus{{ $item->id }}" action="{{ url('transaksi/delete/' . $item->id) }}" />
                                 <!-- Modal detail -->
                                  <!-- Modal create -->
-                                <x-modals.modalpost id="edit{{ $item->id }}" title="Form Update Data Keuangan" action="{{ url('keuangan/update', $item->id) }}">
-                                    <x-inputs.input readonly label="Kode Transaksi" name="kode_trx" placeholder="Kode Keuangan"
-                                    value="{{ $item->kode_pos }}" />
+                                <x-modals.modalpost id="edit{{ $item->id }}" title="Form Update Data Transaksi" action="{{ url('transaksi/update', $item->id) }}">
+                                    <x-inputs.input readonly label="Kode Transaksi" name="kode_trx" placeholder="Kode Transaksi"
+                                    value="{{ $item->kode_trx }}" />
                                     <x-inputs.input label="Keterangan" name="keterangan_trx" value="{{ $item->keterangan_trx }}" placeholder="Keterangan Transaksi" />
                                     <x-inputs.select label="Jenis Transaksi" name="jenis_trx">
                                         <option value="">--- Pilih ---</option>
-                                        <option value="DEBET" @if($item->jenis_pos == 'DEBET') selected @endif>DEBET</option>
-                                        <option value="KREDIT" @if($item->jenis_pos == 'KREDIT') selected @endif>KREDIT</option>
+                                        <option value="DEBET" @if($item->jenis_trx == 'DEBET') selected @endif>DEBET</option>
+                                        <option value="KREDIT" @if($item->jenis_trx == 'KREDIT') selected @endif>KREDIT</option>
                                     </x-inputs.select>
                                     <x-inputs.input label="Nominal" name="nominal_trx" value="{{ $item->nominal_trx }}" placeholder="Nominal Transaksi" />
                                     <x-inputs.input label="Saldo" name="saldo_trx" value="{{ $item->saldo_trx }}" placeholder="Saldo Transaksi" />
+                                        <x-inputs.input label="Tanggal Transaksi" name="tgl_trx" value="{{ $item->tgl_trx }}" type="date" placeholder="Tanggal Transaksi" />
                                 </x-modals.modalpost>
                             @endforeach
                         </tbody>

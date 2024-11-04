@@ -47,8 +47,8 @@ Route::prefix('/transaksi')->group(function () {
     Route::controller(TransaksiController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/store', 'store');
-        Route::post('/update/{poskeuangan}', 'update');
-        Route::post('/delete/{poskeuangan}', 'delete');
+        Route::post('/update/{transaksi}', 'update');
+        Route::post('/delete/{transaksi}', 'delete');
     });
 });
 
