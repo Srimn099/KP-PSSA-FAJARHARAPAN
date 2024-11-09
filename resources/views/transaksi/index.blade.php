@@ -8,9 +8,14 @@
         <div class="box">
             <div class="header">
                 <span></span>
-                <a href="#create" data-bs-toggle="modal" class="btn btn-sm btn-success">
-                    <i class="bi bi-plus"></i> Tambah
-                </a>
+                <div class="btn-group">
+                    <a href="#modallaporan" data-bs-toggle="modal" class="btn btn-danger">
+                        <i class="bi bi-file-pdf"></i> Cetak Laporan
+                    </a>
+                    <a href="#create" data-bs-toggle="modal" class="btn btn-success">
+                        <i class="bi bi-plus"></i> Tambah
+                    </a>
+                </div>
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -49,21 +54,29 @@
                                     </td>
                                 </tr>
                                 <!-- Modal hapus -->
-                                <x-modals.modalconfirm id="hapus{{ $item->id }}" action="{{ url('transaksi/delete/' . $item->id) }}" />
+                                <x-modals.modalconfirm id="hapus{{ $item->id }}"
+                                    action="{{ url('transaksi/delete/' . $item->id) }}" />
                                 <!-- Modal detail -->
-                                 <!-- Modal create -->
-                                <x-modals.modalpost id="edit{{ $item->id }}" title="Form Update Data Transaksi" action="{{ url('transaksi/update', $item->id) }}">
-                                    <x-inputs.input readonly label="Kode Transaksi" name="kode_trx" placeholder="Kode Transaksi"
-                                    value="{{ $item->kode_trx }}" />
-                                    <x-inputs.input label="Keterangan" name="keterangan_trx" value="{{ $item->keterangan_trx }}" placeholder="Keterangan Transaksi" />
+                                <!-- Modal create -->
+                                <x-modals.modalpost id="edit{{ $item->id }}" title="Form Update Data Transaksi"
+                                    action="{{ url('transaksi/update', $item->id) }}">
+                                    <x-inputs.input readonly label="Kode Transaksi" name="kode_trx"
+                                        placeholder="Kode Transaksi" value="{{ $item->kode_trx }}" />
+                                    <x-inputs.input label="Keterangan" name="keterangan_trx"
+                                        value="{{ $item->keterangan_trx }}" placeholder="Keterangan Transaksi" />
                                     <x-inputs.select label="Jenis Transaksi" name="jenis_trx">
                                         <option value="">--- Pilih ---</option>
-                                        <option value="DEBET" @if($item->jenis_trx == 'DEBET') selected @endif>DEBET</option>
-                                        <option value="KREDIT" @if($item->jenis_trx == 'KREDIT') selected @endif>KREDIT</option>
+                                        <option value="DEBET" @if ($item->jenis_trx == 'DEBET') selected @endif>DEBET
+                                        </option>
+                                        <option value="KREDIT" @if ($item->jenis_trx == 'KREDIT') selected @endif>KREDIT
+                                        </option>
                                     </x-inputs.select>
-                                    <x-inputs.input label="Nominal" name="nominal_trx" value="{{ $item->nominal_trx }}" placeholder="Nominal Transaksi" />
-                                    <x-inputs.input label="Saldo" name="saldo_trx" value="{{ $item->saldo_trx }}" placeholder="Saldo Transaksi" />
-                                        <x-inputs.input label="Tanggal Transaksi" name="tgl_trx" value="{{ $item->tgl_trx }}" type="date" placeholder="Tanggal Transaksi" />
+                                    <x-inputs.input label="Nominal" name="nominal_trx" value="{{ $item->nominal_trx }}"
+                                        placeholder="Nominal Transaksi" />
+                                    <x-inputs.input label="Saldo" name="saldo_trx" value="{{ $item->saldo_trx }}"
+                                        placeholder="Saldo Transaksi" />
+                                    <x-inputs.input label="Tanggal Transaksi" name="tgl_trx"
+                                        value="{{ $item->tgl_trx }}" type="date" placeholder="Tanggal Transaksi" />
                                 </x-modals.modalpost>
                             @endforeach
                         </tbody>
@@ -75,33 +88,46 @@
     <!-- Modal create -->
     <x-modals.modalpost id="create" title="Form Tambah Data Transaksi" action="{{ url('transaksi/store') }}">
         <x-inputs.input readonly label="Kode Transaksi" name="kode_trx" placeholder="Kode Transaksi"
-        value="{{ $kode }}" />
+            value="{{ $kode }}" />
         <x-inputs.input label="Keterangan" name="keterangan_trx" placeholder="Keterangan Transaksi" />
         <x-inputs.select label="Jenis Transaksi" name="jenis_trx">
             <option value="">--- Pilih ---</option>
             <option value="DEBET">DEBET</option>
             <option value="KREDIT">KREDIT</option>
         </x-inputs.select>
-        <x-inputs.input label="Nominal" name="nominal_trx"  placeholder="Nominal Transaksi" />
+        <x-inputs.input label="Nominal" name="nominal_trx" placeholder="Nominal Transaksi" />
         <x-inputs.input label="Saldo Awal" name="saldo_trx" placeholder="Saldo Transaksi" />
         <x-inputs.input label="Tanggal Transaksi" name="tgl_trx" type="date" placeholder="Tanggal Transaksi" />
     </x-modals.modalpost>
 
+    <!-- Modal Cetak Laporan -->
+    <x-modals.modalpost id="modallaporan" title="CETAK LAPORAN TRANSAKSI" action="{{ url('laporan/laptransaksi') }}"
+        btnTitle="CETAK LAPORAN">
+
+        <x-inputs.input label="Dari Tanggal" type="date" name="tgl_mulai" placeholder="Dari tanggal" />
+        <x-inputs.input label="Sampai Tanggal" type="date" name="tgl_akhir" placeholder="Sampai tanggal" />
+    </x-modals.modalpost>
+
     @push('js')
-    <script src="{{ asset('assets/js/currencyFormater.js') }}"></script>
+        <script src="{{ asset('assets/js/currencyFormater.js') }}"></script>
         <script>
             $('#nominal_trx').formatRupiah();
             $('#saldo_trx').formatRupiah();
-
             var jenistrx = $('#jenis_trx').val();
-
-
         </script>
         @if ($errors->any())
             <script>
                 $(document).ready(function() {
-                    var modal = new bootstrap.Modal(document.getElementById('create'));
-                    modal.show(); // Tampilkan modal secara otomatis saat halaman dimuat
+                    var errorsArray = {!! json_encode($errors->all()) !!};
+                    var str1 = "Harap masukkan Tgl Mulai";
+                    var str2 = "Harap masukkan Tgl Mulai";
+                    if (errorsArray[0] == str1 || errorsArray[1] == str2) {
+                        var modal = new bootstrap.Modal(document.getElementById('modallaporan'));
+                        modal.show();
+                    } else {
+                        var modal = new bootstrap.Modal(document.getElementById('create'));
+                        modal.show();
+                    }
                 });
             </script>
         @endif

@@ -59,8 +59,8 @@
                     <span>Laporan</span>
                 </a>
                 <ul class="dropdown-menu md:dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#">Laporan Transaksi</a></li>
-                    <li><a class="dropdown-item" href="#">Laporan Keuangan</a></li>
+                    <li><a class="dropdown-item" href="{{ url('laporan/laptransaksi') }}">Laporan Transaksi</a></li>
+                    <li><a class="dropdown-item" href="{{ url('laporan/lapkeuangan') }}">Laporan Keuangan</a></li>
                 </ul>
             </li>
         </ul>

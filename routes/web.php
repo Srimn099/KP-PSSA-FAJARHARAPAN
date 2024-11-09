@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengelolaController;
 use App\Http\Controllers\PostkeuanganController;
 use App\Http\Controllers\SiswaController;
@@ -71,5 +72,12 @@ Route::prefix('/pengelola')->group(function () {
         Route::post('/store', 'store');
         Route::post('/update/{pengelola}', 'update');
         Route::post('/delete/{pengelola}', 'delete');
+    });
+});
+// Pengelola controller
+Route::prefix('/laporan')->group(function () {
+    Route::controller(LaporanController::class)->group(function () {
+        Route::post('/laptransaksi', 'laptransaksi');
+        Route::get('/lapkeuangan', 'lapkeuangan');
     });
 });
