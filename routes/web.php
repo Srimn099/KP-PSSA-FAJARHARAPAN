@@ -66,6 +66,7 @@ Route::prefix('/siswa')->group(function () {
 });
 
 // Pengelola controller
+
 Route::prefix('/pengelola')->group(function () {
     Route::controller(PengelolaController::class)->group(function () {
         Route::get('/', 'index');
