@@ -3,23 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Tbsiswa extends Model
 {
+    use HasFactory;
     protected $table = 'tb_siswa';
     protected $fillable = [
-       'foto',
-       'nama',
-       'tmp_lahir',
-       'tgl_lahir',
-       'jk',
-       'pendidikan_terakhir',
-       'nama_ayah',
-       'nama_ibu',
-       'pk_ortu',
-       'alamat',
-       'tgl_masuk',
-       'tgl_keluar',
+        'foto',
+        'nama',
+        'tmp_lahir',
+        'tgl_lahir',
+        'jk',
+        'pendidikan_terakhir',
+        'nama_ayah',
+        'nama_ibu',
+        'pk_ortu',
+        'alamat',
+        'tgl_masuk',
+        'tgl_keluar',
     ];
     static $rules = [
         'foto' => 'required',
@@ -36,7 +39,7 @@ class Tbsiswa extends Model
         'tgl_keluar' => 'required',
     ];
     static $messages = [
-       'foto.required' => 'Foto wajib diisi',
+        'foto.required' => 'Foto wajib diisi',
         'nama.required' => 'Nama wajib diisi',
         'tmp_lahir.required' => 'Tempat Lahir wajib diisi',
         'tgl_lahir.required' => 'Tanggal Lahir wajib diisi',
@@ -54,8 +57,9 @@ class Tbsiswa extends Model
         'updated_at'
     ];
 
-    function ttl(){
-        return $this->tmp_lahir.','.$this->tgl_lahir;
+    function ttl()
+    {
+        return $this->tmp_lahir . ',' . $this->tgl_lahir;
     }
 
     public static function handleUpload($file)
@@ -73,6 +77,4 @@ class Tbsiswa extends Model
             }
         }
     }
-
-
 }
