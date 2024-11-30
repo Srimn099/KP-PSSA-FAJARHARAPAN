@@ -12,6 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Tbaset::factory()->count(10)->create(); // Pastikan memanggil factory dengan benar
+        // Tbaset::factory()->count(10)->create(); // Pastikan memanggil factory dengan benar
     }
 }
