@@ -9,8 +9,6 @@ body{
     bg-blue-50
     font-sans
     antialiased
-    dark:bg-black
-    dark:text-white/50
 }
 
 .navbars{
@@ -123,6 +121,31 @@ body{
     text-white
     bg-blue-700
 }
+.nabars-bottom-menu .menu li .dropdown-menu {
+    @apply
+    rounded-md
+    border-0
+    shadow-lg
+    p-2
+    mt-[5rem]
+    min-w-full
+}
+.nabars-bottom-menu .menu li .dropdown-menu li a {
+    @apply
+    text-sm
+    flex
+    items-center
+    mb-[2px]
+    bg-slate-200
+    text-slate-600
+}
+.nabars-bottom-menu .menu li .dropdown-menu li:hover a,
+.nabars-bottom-menu .menu li .dropdown-menu li:focus a,
+.nabars-bottom-menu .menu li .dropdown-menu li.active a{
+    @apply
+    text-white
+    bg-blue-700
+}
 
 .section-contents{
     @apply
@@ -131,9 +154,6 @@ body{
     px-8
     md:pt-[10rem]
     md:px-[6rem]
-    grid
-    grid-cols-12
-    gap-6
 }
 .sections-header{
     @apply
@@ -141,6 +161,7 @@ body{
     items-center
     justify-between
     gap-x-2
+    mb-8
 }
 .sections-header .title{
     @apply
@@ -154,7 +175,7 @@ body{
     @apply
     bg-white
     rounded-sm
-    shadow-sm
+    shadow-md
     w-full
 }
 .box .header{
@@ -181,6 +202,95 @@ body{
     border-b-[1.2px]
     border-b-slate-200
 }
+
+.box-info {
+    @apply
+    relative
+    rounded-md
+    shadow-sm
+    p-4
+    max-h-[120px]
+    h-[120px]
+    mb-6
+}
+.box-info-icons {
+    @apply
+    absolute
+    top-0
+    right-0
+    flex
+    items-center
+    justify-center
+    w-[120px]
+    h-[120px]
+}
+.box-info-icons i {
+    @apply
+    text-5xl
+    text-slate-950/50
+}
+.box-info:hover .box-info-icons i {
+    @apply
+    scale-150
+    -rotate-45
+    transition-all
+    duration-500
+    ease-in-out
+}
+.box-info-captions {
+    @apply
+    flex
+    flex-col
+    gap-2
+}
+.box-info-captions h2,
+.box-info-captions .counter, {
+    @apply
+    inline-block
+    p-0
+    m-0
+}
+.box-info-captions h2{
+    @apply
+    text-base
+    font-medium
+    uppercase
+}
+.box-info-captions .counter{
+    @apply
+    text-5xl
+    font-semibold
+}
+.box-info-primary {
+    @apply
+    bg-gradient-to-r 
+    from-indigo-500 
+    to-cyan-500
+    text-white
+}
+.box-info-success {
+    @apply
+    bg-gradient-to-r 
+    from-green-500 
+    to-emerald-700
+    text-white
+}
+.box-info-warning {
+    @apply
+    bg-gradient-to-r 
+    from-yellow-500 
+    to-orange-500
+    text-white
+}
+.box-info-purple {
+    @apply
+    bg-gradient-to-r 
+    from-purple-500 
+    to-pink-500
+    text-white
+}
+
+
 
 /* table */
 .table thead tr th{
@@ -279,7 +389,6 @@ body{
 
 /* Input */
 .form-control,
-.form-select,
 textarea,
 .dt-input{
     @apply
@@ -312,9 +421,27 @@ textarea,
 }
 .form-group label{
     @apply
-    text-xs
-    text-slate-600
+    text-sm
+    text-slate-700
     font-medium
+    
+}
+.input-text-error{
+    @apply
+    text-red-500 text-sm float-end inline-block
+}
+
+.form-select {
+    @apply
+    py-2
+    text-sm
+    text-slate-600
+    placeholder:text-slate-400
+    bg-white
+    outline-none
+    shadow-none
+    focus:shadow-none
+    focus:outline-none
 }
 
 /* form-post-data */
@@ -515,4 +642,135 @@ textarea,
     items-center
     justify-center
     space-x-1
+}
+
+.body-print{
+    @apply
+    p-8
+    bg-white
+}
+.print-header{
+    @apply
+    flex
+    flex-col
+    items-center
+    justify-center
+    mb-12
+    pb-8
+    border-b-2
+    border-slate-400
+}
+.print-header h2{
+    @apply
+    text-3xl
+}
+.print-header h4{
+    @apply
+    text-xl
+    text-slate-500
+}
+        
+.print-header p{
+    @apply
+    text-base
+    text-slate-600
+}
+
+
+.auth-pages {
+    @apply
+    flex
+    items-center
+    justify-center
+    h-screen
+}
+.auth-form {
+    @apply
+    flex
+    flex-col
+    gap-6
+    min-w-full
+    md:min-w-[400px]
+    p-6
+    bg-white
+    rounded-md
+    shadow-lg
+}
+.auth-form .form-header {
+    @apply
+    flex
+    items-center
+    justify-center
+    flex-col
+    gap-4
+}
+.auth-form .form-header h2 {
+    @apply
+    text-2xl
+    font-semibold
+    text-slate-600
+}
+.auth-form .form-body {
+    @apply
+    w-full
+    flex
+    flex-col
+    gap-[2px]
+}
+.auth-form .form-body .form-group {
+    @apply
+    relative
+    w-full
+}
+.auth-form .form-body .form-group .form-icons {
+    @apply
+    absolute
+    top-[2px]
+    left-[2px]
+    rounded-lg
+    w-[36px]
+    h-[36px]
+    flex
+    items-center
+    justify-center
+    text-slate-600
+}
+.auth-form .form-body .form-group .form-control {
+    @apply
+    w-full
+    px-[38px]
+    py-[8px]
+    text-sm
+    border-[2px]
+    border-slate-300
+    hover:border-indigo-500
+    focus:border-indigo-500
+}
+.auth-form .form-body .form-group .error-text {
+    @apply
+    text-sm
+    float-right
+    text-red-500
+}
+.auth-form .form-body .form-group .form-icons-toggle {
+    @apply
+    absolute
+    top-[2px]
+    right-[2px]
+    rounded-lg
+    w-[36px]
+    h-[36px]
+    flex
+    items-center
+    justify-center
+    text-slate-600
+    cursor-pointer
+    hover:text-indigo-500
+    focus:text-indigo-500
+}
+.auth-form .form-footer {
+    @apply
+    flex
+    items-center
+    justify-end
 }
