@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>FAJAR HARAPAN</title>
+        <title>PSSA FAJAR HARAPAN</title>
         <link rel="shortcut icon" href="{{ asset('public/assets/images/light-logo.png') }}">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
